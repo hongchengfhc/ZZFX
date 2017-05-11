@@ -1,0 +1,71 @@
+/*佣金明细css*/
+.table_box{
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+#commission_detail{
+	padding: 1px;
+}
+.dis_search{
+	margin: 30px 30px 10px 30px;
+	padding: 10px;
+	background-color: #f7f7fc;
+}
+.search_list_1{
+	margin-bottom: 10px;
+}
+.search_name{
+	display: inline-block;
+	width: 95px;
+	text-align: right;
+}
+.float_r{
+	float: right;
+}
+.mar_r{
+	margin-right: 10px;
+}
+.dis_table{
+	margin: 10px 40px 30px 30px;
+}
+
+.form_date_start,.form_date_end{
+	width: 151px;
+}
+
+.dis_middle {
+	margin: 10px 30px 10px 30px;
+	text-align: right;
+}
+.pageDiv{
+	text-align: right;
+	margin-right: 30px;
+}
+
+
+/*overrid*/
+.combo-select {
+    position: relative;
+    max-width: 400px;
+    width: 151px;
+    height: 28px;
+    display: inline-block;
+    font: 100% Helvetica, Arial, Sans-serif;
+    border: 1px #ccc solid;
+    border-radius: 3px;
+}
+.combo-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    padding-right: 60px;
+    border-radius: 3px;
+}
+

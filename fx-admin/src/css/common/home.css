@@ -1,0 +1,87 @@
+.bg_color{
+	background-color: #fbfbfc;
+}
+.zzhead{
+	position: fixed;
+	top: 0;
+	background-color: #fff;
+	width: 100%;
+	font-family: PingFangSC-Regular;
+	color: #1b1a20;
+	z-index: 100;
+}
+.zzhead h1{
+	display: inline-block;
+}
+.zzhead img{
+	vertical-align: top;
+	width: 32px;
+	margin-top: 14px;
+	margin-left: 70px;
+}
+@media (max-height: 600px) {
+    .zzbody{
+		margin: 106px 50px 50px;
+		max-height: 450px;
+		min-width: 400px;
+		border: 1px solid #efeff4;
+		background-color: #fff;
+		min-width: 1000px;
+	
+	}
+}
+@media (min-height: 601px) and (max-height: 799px) {
+    .zzbody{
+		margin: 106px 50px 50px;
+		max-height: 600px;
+		min-width: 400px;
+		border: 1px solid #efeff4;
+		background-color: #fff;
+		min-width: 1000px;
+	
+	}
+}
+@media (min-height: 800px) {
+    .zzbody{
+		margin: 106px 50px 50px;
+		max-height: 800px;
+		min-width: 400px;
+		border: 1px solid #efeff4;
+		background-color: #fff;
+		min-width: 1000px;
+	
+	}
+}
+
+.zzmenu{
+	width: 200px;
+	background-color: #FFF;
+	min-height: 650px;
+	border-right: 1px solid #efeff4;
+	vertical-align: top;
+}
+.zzcontent{
+	overflow: scroll;
+	max-height: 800px;
+	padding: 50px;
+	overflow-x: hidden;
+	/*min-width: 700px;*/
+}
+.ub
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	position:relative;
+}
+.ub-f1
+{
+	position:relative;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;  
+	box-flex: 1;
+}
+.timepicker_width{
+	width: 150px;
+}
+

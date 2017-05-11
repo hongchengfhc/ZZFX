@@ -1,0 +1,488 @@
+.iframe_box{
+	min-width: 1160px;
+	padding: 30px;
+}
+/*时间选择器*/
+.timepicker{
+	position: relative;
+    display: inline-block;
+    outline: none;
+    font-size: 12px;
+    -webkit-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+    width: 101px;
+}
+.timepicker input{
+	width: 101px!important;
+}
+.timepicker span{
+	color: #ccc;
+    top: 8px;
+    left: 80px;
+    position: absolute!important;
+}
+.timepicker_select{
+	width: 101px;
+	height: 127px;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.08);
+	border: 1px solid #efeff4;
+	border-radius: 3px;
+	position: absolute;
+	display: none;
+	background-color: #fff;
+}
+.timepicker_box{
+	width: 100px;
+	display: inline-block;
+}
+.select_hour_box{
+	overflow-x: hidden;
+	width: 49px;
+	border-right:1px solid #efeff4;
+	height: 125px;
+	float: left;
+	overflow: hidden;
+	padding-bottom: 100px;
+}
+.select_minute_box{
+	width: 49px;
+	height: 125px;
+	float: left;
+	overflow: hidden;
+	padding-bottom: 100px;
+	overflow-x: hidden;
+}
+.select_hour{
+	width: 48px;
+	height: 25px;
+	text-align: left;
+	line-height: 25px;
+	padding-left: 8px;
+	color: #999;
+	cursor: pointer;
+	-webkit-transition: background 0.3s ease;
+	transition: background 0.3s ease;
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.select_hour_box div:hover {
+    background: #eef9f8;
+}
+.select_minute_box div:hover {
+    background: #eef9f8;
+}
+.timepicker_select div:hover {
+    overflow-y: scroll;
+}
+.select_minute{
+	width: 49px;
+	height: 25px;
+	text-align: left;
+	line-height: 25px;
+	padding-left: 8px;
+	color: #999;
+	cursor: pointer;
+	-webkit-transition: background 0.3s ease;
+	transition: background 0.3s ease;
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.select_option{
+	background: #f7f7f7;
+		font-weight: bold;
+}
+
+/*分页*/
+.pageDiv {
+	padding: 15px 20px;
+	color: #ccc;
+	clear: both;
+}
+
+.pageDiv a {
+	color: #4c4c4c;
+	background: #F7F7FC;
+	display: inline-block;
+	padding: 3px 10px;
+	border: 1px solid #ddd;
+	margin: 0 2px;
+	vertical-align: middle;
+	font-size: 12px;
+	border-radius: 4px;
+}
+
+.pageDiv a:hover {
+	text-decoration: none;
+	border: 1px solid #428bca;
+}
+
+.pageDiv span.current {
+	display: inline-block;
+	padding: 3px 10px;
+	margin: 0 2px;
+	color: #ed601b;
+	border-radius: 4px;
+	vertical-align: middle;
+	border: 1px solid #ccc;
+}
+
+.pageDiv span.disabled {
+	display: inline-block;
+	padding: 3px 10px;
+	margin: 0 2px;
+	color: #bfbfbf;
+	background: #f2f2f2;
+	border: 1px solid #bfbfbf;
+	vertical-align: middle;
+	border-radius: 4px;
+}
+
+.pageDiv span.pagecount {
+	padding: 0 10px;
+	font-size: 14px;
+	color: #999999;
+	margin-right: -20px;
+}
+
+.pageDiv span.countYe {
+	color: #4C4C4C;
+	font-size: 14px;
+	margin-left: 30px;
+}
+
+.pageDiv span.countYe input {
+	outline: none;
+	border: 1px solid #ddd;
+	height: 25px;
+	padding: 0px;
+	width: 25px;
+	margin: 0 5px;
+	border-radius: 5px;
+}
+
+.pageDiv a.turndown {
+	padding: 4px 15px;
+	margin-right: 0;
+	margin-left: 15px;
+}
+
+.pageDiv {
+	padding-right: 0
+}
+
+/*NO.3 下拉筛选*/
+
+.combo-select {
+  position: relative;
+  max-width: 400px;
+  width: 151px;
+  display: inline-block;
+  /*margin-bottom: 15px;*/
+  font: 100% Helvetica, Arial, Sans-serif;
+  border: 1px #ccc solid;
+  border-radius: 3px; }
+  .combo-select .combo-input {
+    margin-bottom: 0; }
+
+/**
+ * Input field
+ */
+.combo-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  padding-right: 60px;
+  border-radius: 3px; }
+  .combo-input:focus {
+    outline: none; }
+
+/**
+ * Arrow
+ */
+.combo-arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  width: 40px;
+  font-size: 12px;
+  color: #999999; }
+  .combo-arrow:before {
+    content: " ";
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #cccccc;
+    display: block;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 15px;
+    bottom: 0;
+    position: absolute;
+    margin: auto 0; }
+
+/**
+ * When opened
+ */
+.combo-open .combo-arrow {
+  border-color: #51A7E8; }
+  .combo-open .combo-arrow:before {
+    border-top: none;
+    border-bottom: 5px solid #cccccc; }
+
+/**
+ * When focused
+ */
+.combo-focus {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-color: #51A7E8; }
+  .combo-focus input {
+    border-color: #51A7E8; }
+
+/**
+ * Hide native select
+ */
+.combo-select select {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+  border: 0;
+  -webkit-appearance: none;
+  opacity: 0; }
+
+@media only screen and (min-width: 960px) {
+  .combo-select select {
+    left: -1px;
+    top: -1px;
+    width: 0;
+    height: 0;
+    margin: 0; } }
+/**
+ * Selected option
+ */
+.option-selected {
+  background-color: #eee; }
+
+/**
+ * Hovered option
+ */
+.option-hover {
+  background-color: #afe0dc;
+  color: #fff; }
+
+/**
+ * Option item
+ */
+.option-item {
+  cursor: pointer;
+  border-bottom: 1px #e3e3e3 solid; }
+  .option-item:hover {
+    background-color: #afe0dc;
+    color: #fff; }
+  .option-item:last-child {
+    border-bottom: none; }
+
+/**
+ * Disabled and optgroups
+ */
+.option-group {
+  cursor: text;
+  font-weight: 600;
+  background: #e1e1e1;
+  border: 1px #ccc solid;
+  border-width: 1px 0; }
+
+/**
+ * Disabled
+ */
+.option-disabled {
+  opacity: 0.5; }
+
+/**
+ * Dropdown
+ */
+.combo-dropdown {
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  margin: 0;
+  padding: 0;
+  display: none;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  box-sizing: border-box; }
+  .combo-dropdown li {
+    list-style: none;
+    padding: 8px 1em;
+    margin: 0; }
+
+/**
+ * On Active
+ */
+.combo-open .combo-dropdown {
+  display: block; 
+ }
+
+/**
+ * Search marker
+ */
+.combo-marker {
+  text-decoration: underline; 
+}
+.form_date{
+	width: 205px;
+}
+
+/*alert 弹框*/
+/*垂直居中­*/
+
+.verticalAlign {
+	vertical-align: middle;
+	display: inline-block;
+	height: 100%;
+	margin-left: -1px;
+}
+
+.xcConfirm .xc_layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: #666666;
+	z-index: 2147000000;
+}
+
+.xcConfirm .popBox {
+	position: fixed;
+	left: 50%;
+	top: 25%;
+	background-color: #ffffff;
+	z-index: 2147000001;
+	width: 570px;
+	height: 300px;
+	margin-left: -285px;
+	margin-top: -150px;
+	border-radius: 5px;
+	font-weight: bold;
+	color: #535e66;
+	opacity: 0;
+}
+
+.xcConfirm .popBox .ttBox {
+	height: 60px;
+	padding: 14px 30px;
+	border-bottom: solid 1px #eef0f1;
+}
+
+.xcConfirm .popBox .ttBox .tt {
+	font-size: 18px;
+	display: block;
+	float: left;
+	height: 30px;
+	position: relative;
+}
+
+.xcConfirm .popBox .ttBox .clsBtn {
+	display: block;
+	cursor: pointer;
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 22px;
+	right: 30px;
+	background: url(../images/icons.png) -48px -96px no-repeat;
+}
+
+.xcConfirm .popBox .txtBox {
+	margin: 40px 100px;
+	height: 100px;
+	overflow: hidden;
+}
+
+.xcConfirm .popBox .txtBox .bigIcon {
+	float: left;
+	margin-right: 20px;
+	width: 48px;
+	height: 48px;
+	background-image: url(../images/icons.png);
+	background-repeat: no-repeat;
+	background-position: 48px 0;
+}
+
+.xcConfirm .popBox .txtBox p {
+	height: 84px;
+	margin-top: 16px;
+	line-height: 26px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font-size: 17px;
+}
+
+.xcConfirm .popBox .txtBox p input {
+	width: 364px;
+	height: 30px;
+	border: solid 1px #eef0f1;
+	font-size: 18px;
+	margin-top: 6px;
+}
+
+.xcConfirm .popBox .btnArea {
+	border-top: solid 1px #eef0f1;
+}
+
+.xcConfirm .popBox .btnGroup {
+	float: right;
+}
+
+.xcConfirm .popBox .btnGroup .sgBtn {
+	margin-top: 14px;
+	margin-right: 10px;
+}
+
+.xcConfirm .popBox .sgBtn {
+	display: block;
+	cursor: pointer;
+	float: left;
+	width: 95px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	color: #FFFFFF;
+	border-radius: 5px;
+}
+
+.xcConfirm .popBox .sgBtn.ok {
+	background-color: #0095d9;
+	color: #FFFFFF;
+}
+
+.xcConfirm .popBox .sgBtn.cancel {
+	background-color: #546a79;
+	color: #FFFFFF;
+}

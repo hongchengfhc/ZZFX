@@ -1,0 +1,61 @@
+.table_box{
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+#product_list{
+	padding: 1px;
+}
+.dis_search{
+	margin: 30px;
+	padding: 10px;
+	background-color: #f7f7fc;
+}
+.search_list_1{
+	margin-bottom: 10px;
+}
+.search_name{
+	display: inline-block;
+	width: 90px;
+	text-align: right;
+}
+.float_r{
+	float: right;
+}
+.mar_r{
+	margin-right: 10px;
+}
+.mar_b{
+	margin-bottom: 10px;
+}
+.mar_t{
+	margin-top: 10px;
+}
+.mar_b20{
+	margin-bottom: 20px;
+}
+.mar_r30{
+	margin-right: 30px;
+}
+.dis_table{
+	margin: 30px;
+}
+.sel_width{
+	width: 150px!important;
+}
+.modal_box{
+	width: 600px;
+}
+.newpro_top{
+	padding: 10px 20px;
+	font-size: 20px;
+}
+.newpro_center{
+	padding: 10px 40px;
+}
+.money_center{
+	padding: 15px 40px;
+}
+.text_c{
+	text-align: center;
+}
+

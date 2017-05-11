@@ -1,0 +1,86 @@
+.table_box{
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+#money_list{
+	padding: 1px;
+}
+.dis_search{
+	margin: 30px;
+	padding: 10px;
+	background-color: #f7f7fc;
+}
+.search_list_1{
+	margin-bottom: 10px;
+}
+.search_name{
+	display: inline-block;
+	width: 50px;
+	text-align: right;
+}
+.float_r{
+	float: right;
+}
+.mar_r{
+	margin-right: 10px;
+}
+.dis_table{
+	margin: 0px 30px 10px 30px;
+	clear: both;
+}
+.sel_width{
+	width: 150px!important;
+}
+
+.text_c{
+	text-align: center;
+}
+.div_class{
+	width: 650px;
+	margin-left: 125px;
+}
+.div_class_apply{
+	text-align: center;
+	font-size: 20px;
+}
+
+.search_name{
+	display: inline-block;
+	width: 95px;
+	text-align: right;
+}
+
+.div_name{
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+}
+.div_content{
+	display: inline-block;
+	width: 150px;
+	text-align: left;
+}
+.div_center{
+	text-align: left;
+	font-size: 14px;
+	margin-left: 40px;
+}
+.div_class_title{
+	padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.div_class_info{
+	padding: 10px 0;
+}
+.mar_b{
+	margin-bottom: 15px;
+}
+.search_name{
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+}
+.pageDiv{
+	text-align: right;
+	margin-right: 30px;
+}

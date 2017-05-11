@@ -1,0 +1,55 @@
+.table_box{
+	border: 1px solid #ccc;
+	border-top: 0;
+}
+
+.search_list_1{
+	margin-bottom: 10px;
+}
+
+.dis_search{
+	margin: 30px 30px 20px 30px;
+	padding: 10px;
+	background-color: #f7f7fc;
+}
+
+.dis_middle{
+	margin: 20px 50px 10px 30px;
+}
+
+.float_r{
+	float: right;
+}
+
+.dis_table{
+	margin: 0px 30px 10px 30px;
+	clear: both;
+}
+
+.order_list{
+	padding: 1px;
+}
+
+.dis_middle {
+	margin: 20px 30px 10px 30px;
+	text-align: right;
+}
+
+.search_name{
+	display: inline-block;
+	width: 95px;
+	text-align: right;
+}
+
+.input_width{
+	width: 151px !important;
+}
+
+.mar_r{
+	margin-right: 10px;
+}
+
+.pageDiv{
+	text-align: right;
+	margin-right: 30px;
+}
