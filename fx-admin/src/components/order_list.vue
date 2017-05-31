@@ -112,7 +112,7 @@
 				},
 				current_page: 1,
 				page_size: 10,
-				total_count:0,
+				total_count: 0,
 				order_status_list: [],
 				order_type_list: [],
 				start_time: '',
@@ -123,8 +123,8 @@
 				no_info: "无查询结果",
 				select_order_type: '',
 				select_order_status: '',
-				order_id: '',   //筛选条件
-				loading:true    //加载loading
+				order_id: '', //筛选条件
+				loading: true //加载loading
 			}
 		},
 		//过滤器
@@ -136,14 +136,14 @@
 		//钩子函数
 		mounted: function() {
 			this.$nextTick(function() {
-				Util.delay(this.httpBaseInfo,AdminConfig.delayTime);
+				Util.delay(this.httpBaseInfo, AdminConfig.delayTime);
 			})
 		},
 		//方法
 		methods: {
 			//处理
-			monty_format(row,column){
-				return 	"￥"+row.total_money;
+			monty_format(row, column) {
+				return "￥" + row.total_money;
 			},
 			handleSizeChange(val) {
 				console.log(`每页 ${val} 条`);
@@ -169,22 +169,24 @@
 			httpBaseInfo() {
 				let _this = this;
 				this.$http.post(
-					AdminConfig.base_api + "order/order/get-initialize", {}, { emulateJSON: true }
+					AdminConfig.base_api + "order/order/get-initialize", {}, {
+						emulateJSON: true
+					}
 				).then(res => {
 						let res_data = res.body;
-						_this.loading=false;
-						if(res_data['flag']==false){
+						_this.loading = false;
+						if(res_data['flag'] == false) {
 							_this.$message.warning(res_data['msg']);
-						}else{
+						} else {
 							let data = res_data.data;
-							
-						Util.ZZLog('参数返回', data);
-						_this.order_status_list = data.order_status_list,
-							_this.order_type_list = data.order_type_list,
-							_this.searchDidClick();
-						
+
+							Util.ZZLog('参数返回', data);
+							_this.order_status_list = data.order_status_list,
+								_this.order_type_list = data.order_type_list,
+								_this.searchDidClick();
+
 						}
-						
+
 					},
 					error => {
 						_this.$message.error(AdminConfig.infoApiError);
@@ -218,29 +220,44 @@
 				}
 				let urlstr = AdminConfig.base_api + 'order/order/get-order-list';
 				let _this = this;
-				this.$http.post(urlstr, data, { emulateJSON: true }
-				).then(res => {
+				this.$http.post(urlstr, data, {
+					emulateJSON: true
+				}).then(res => {
 					let res_data = res.body;
 					Util.ZZLog(res_data);
-					_this.loading=false;
+					_this.loading = false;
 					if(res_data['flag'] == false) {
 						_this.$message.warning(res_data['msg']);
 					} else {
 						let data = res_data.data;
 						let page = data.page;
-						data.order_list.forEach((v,i)=>{
-							var oc = v.order_come.split('<br/>');
-							v.order_come = {come1:oc[0],come2:oc[1]};
+						data.order_list.forEach((v, i) => {
+							if(v.order_come) {
+								if(v.order_come.includes('<br/>')) {
+									var oc = v.order_come.split('<br/>');
+									v.order_come = {
+										come1: oc[0],
+										come2: oc[1]
+									};
+								}
+
+							} else {
+								v.order_come = {
+									come1: v.order_come,
+									come2: ""
+								};
+							}
+
 						})
 						this.order_listinfo = data.order_list;
 						let totalpage = page.total_pages;
 						this.total_count = parseInt(page['total_count']);
 					}
 				}, error => {
-					_this.loading=false;
+					_this.loading = false;
 					_this.$message.error(AdminConfig.infoApiError);
 				})
-				},
+			},
 			//分页查询数据
 			httpData() {
 				let order_id = this.order_id;
@@ -263,24 +280,39 @@
 				}
 				let urlstr = AdminConfig.base_api + 'order/order/get-order-list';
 				let _this = this;
-				this.$http.post(urlstr, data, { emulateJSON: true }).then(res => {
+				this.$http.post(urlstr, data, {
+					emulateJSON: true
+				}).then(res => {
 					let res_data = res.body;
 					Util.ZZLog(res_data);
-					_this.loading=false;
+					_this.loading = false;
 					if(res_data.flag == false) {
 						_this.$message.warning(res_data['msg']);
 					} else {
 						let data = res_data.data;
 						let page = data.page;
-						_this.order_listinfo=[];
-						data.order_list.forEach((v,i)=>{
-							var oc = v.order_come.split('<br/>');
-							v.order_come = {come1:oc[0],come2:oc[1]};
+						_this.order_listinfo = [];
+						data.order_list.forEach((v, i) => {
+							if(v.order_come) {
+								if(v.order_come.includes('<br/>')) {
+									var oc = v.order_come.split('<br/>');
+									v.order_come = {
+										come1: oc[0],
+										come2: oc[1]
+									};
+								}
+
+							} else {
+								v.order_come = {
+									come1: v.order_come,
+									come2: ""
+								};
+							}
 						})
 						_this.order_listinfo = data.order_list;
 					}
 				}, error => {
-					_this.loading=false;
+					_this.loading = false;
 					_this.$message.error(AdminConfig.infoApiError);
 				})
 			},
@@ -296,22 +328,25 @@
 				this.httpFirstData();
 			},
 			//导出
-			btn_export(){
+			btn_export() {
 				this.$router.push({
-					name:"commission_details",
-					query:{
-						fx_uid:22
+					name: "commission_details",
+					query: {
+						fx_uid: 22
 					}
 				})
-			}
-			,
+			},
 			//取消订单
 			cancelDidClick(dict) {
 				let urlstr = AdminConfig.base_api + 'order/order/cancel';
-				let data = { order_id: dict.order_id };
+				let data = {
+					order_id: dict.order_id
+				};
 				let _this = this;
 				comfirm('确定取消当前订单？', () => {
-					this.$http.post(urlstr, data, { emulateJSON: true }).then(res => {
+					this.$http.post(urlstr, data, {
+						emulateJSON: true
+					}).then(res => {
 						let res_data = res.body;
 						Util.ZZLog(res_data);
 						if(res_data['flag'] == false) {

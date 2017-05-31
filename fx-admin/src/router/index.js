@@ -13,7 +13,7 @@ Vue.use(Resource)
 
 
 const router =  new Router({
-	mode:"history",
+//	mode:"history",
 	base:__dirname,
 	routes: [
 //	alias:"/1000"   //取别名
@@ -29,6 +29,9 @@ const router =  new Router({
 		} },
 		{ path: '/1004',alias:"/distributor_list", name: "distributor_list", meta:{title:"分销商列表"},component: function(resolve){
 			require(['@/components/distributor_list'],resolve);
+		} },
+		{ path: '*',alias:"/404", name: "404", meta:{title:"404"},component: function(resolve){
+			require(['@/components/404'],resolve);
 		} }
 	]
 })

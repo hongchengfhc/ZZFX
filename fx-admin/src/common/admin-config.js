@@ -1,6 +1,6 @@
 //author:fuhc
 export default {
-	//	base_api: "http://fx.zhizhuchuxing.cn/admin/?r=",
+//		base_api: "http://fx.zhizhuchuxing.cn/admin/?r=",
 	base_api: "http://fxtest/admin/?r=",
 	v: "2.2", //版本号
 	version: "version=2.2",

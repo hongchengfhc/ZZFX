@@ -122,7 +122,7 @@
 				no_info: "无查询结果",
 				dialog_show_flag: false,
 				loading:true,   //加载 loading
-				fx_uid:Util.getPar('fx_uid')
+				fx_uid:0
 			}
 		},
 		//过滤器
@@ -134,6 +134,9 @@
 			this.$nextTick(function() {
 				Util.delay(this.httpLoadInfo,AdminConfig.delayTime);
 			})
+		},
+		watch:{
+			"$route":"btn_search"
 		},
 		methods: {
 			handleSizeChange(val) {
@@ -184,6 +187,7 @@
 			},
 			httpFirstInfo() {
 				this.current_page = 1;
+				this.fx_uid = Util.getPar('fx_uid')
 				let fx_uid = this.fx_uid;
 				let order_id = this.order_id;
 				let order_type_id = this.select_order_type;
@@ -205,7 +209,7 @@
 					settlement_end_date
 				};
 
-				Util.ZZLog(AdminConfig.base_api + "order/order/get-commission-list", JSON.stringify(data), data);
+				Util.ZZLog(AdminConfig.base_api + "order/order/get-commission-list", JSON.stringify(data));
 				this.$http.post(
 					AdminConfig.base_api + "order/order/get-commission-list", data, { emulateJSON: true }
 				).then(function(res) {
