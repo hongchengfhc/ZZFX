@@ -1,98 +1,97 @@
 <template>
 	<div v-loading.fullscreen.lock="loading" element-loading-text="拼命加载中" id="order_listDIV">
 		<div class="iframe_box">
-			<ul id="myTabs" class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active" href="#order_list" data-toggle="tab">
-					<a>订单列表</a>
-				</li>
-			</ul>
-			<div class="tab-content table_box">
-				<div role="tabpanel" class="tab-pane active order_list" id="order_list">
-					<div class="dis_search" id="dis_search">
-						<div class="form-inline search_list_1">
-							<span class="search_name">订单编号：</span>
-							<div class="form-group">
-								<el-input v-model="order_id" size="small" placeholder="订单编号"></el-input>
-							</div>
-							<span class="search_name">订单类型：</span>
-							<el-select v-model="select_order_type" size="small" filterable placeholder="请选择">
-								<el-option v-for="item in order_type_list" :key="item.order_type_id" :value="item.order_type_id" :label="item.order_type_des">
-								</el-option>
-							</el-select>
-							<span class="search_name">下单开始时间：</span>
-							<el-date-picker v-model="start_time" @change="change1" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-							<span class="search_name" id="">下单结束时间：</span>
-							<el-date-picker v-model="end_time" @change="change2" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-						</div>
-						<div class="form-inline">
-							<span class="search_name">订单状态：</span>
-							<el-select v-model="select_order_status" size="small" filterable placeholder="请选择">
-								<el-option v-for="item in order_status_list" :key="item.order_status_id" :value="item.order_status_id" :label="item.order_status_des">
-								</el-option>
-							</el-select>
-							<span class="search_name">结算开始时间：</span>
-							<el-date-picker v-model="settlement_startday" size="small" @change="change3" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-							<span class="search_name">结算结束时间：</span>
-							<el-date-picker v-model="settlement_endday" size="small" @change="change4" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-							<div class="form-group" id="btns" style="float: right;">
-								<el-button @click="searchDidClick" size="small" icon="search" type="primary" style="float: right;">搜索</el-button>
-								<el-button @click="resetDidClick" size="small" type="warning" style="float: right;margin-right: 10px;">重置</el-button>
-							</div>
+			<el-tabs type="border-card">
+				<el-tab-pane label="订单列表">
+					<div class="tabpane1">
+						<div role="tabpanel" class="tab-pane active order_list" id="order_list">
+							<div class="dis_search" id="dis_search">
+								<div class="form-inline search_list_1">
+									<span class="search_name">订单编号：</span>
+									<div class="form-group">
+										<el-input v-model="order_id" size="small" placeholder="订单编号"></el-input>
+									</div>
+									<span class="search_name">订单类型：</span>
+									<el-select v-model="select_order_type" size="small" filterable placeholder="请选择">
+										<el-option v-for="item in order_type_list" :key="item.order_type_id" :value="item.order_type_id" :label="item.order_type_des">
+										</el-option>
+									</el-select>
+									<span class="search_name">下单开始时间：</span>
+									<el-date-picker v-model="start_time" @change="change1" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+									<span class="search_name" id="">下单结束时间：</span>
+									<el-date-picker v-model="end_time" @change="change2" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+								</div>
+								<div class="form-inline">
+									<span class="search_name">订单状态：</span>
+									<el-select v-model="select_order_status" size="small" filterable placeholder="请选择">
+										<el-option v-for="item in order_status_list" :key="item.order_status_id" :value="item.order_status_id" :label="item.order_status_des">
+										</el-option>
+									</el-select>
+									<span class="search_name">结算开始时间：</span>
+									<el-date-picker v-model="settlement_startday" size="small" @change="change3" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+									<span class="search_name">结算结束时间：</span>
+									<el-date-picker v-model="settlement_endday" size="small" @change="change4" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+									<div class="form-group" id="btns" style="float: right;">
+										<el-button @click="searchDidClick" size="small" icon="search" type="primary" style="float: right;">搜索</el-button>
+										<el-button @click="resetDidClick" size="small" type="warning" style="float: right;margin-right: 10px;">重置</el-button>
+									</div>
 
-						</div>
+								</div>
 
+							</div>
+							<div class="dis_middle">
+								<el-button type="danger" class="el-icon-document" size="small" @click="btn_export()">导出</el-button>
+							</div>
+							<div class="dis_table">
+								<el-table v-loading.body="loading" :data="order_listinfo" stripe style="width: 100%;text-align: left;font-size:12px">
+									<el-table-column prop="order_id" label="订单编号" width="85">
+									</el-table-column>
+									<el-table-column prop="create_order_time" label="预订时间" width="150">
+									</el-table-column>
+									<el-table-column prop="order_type_des" label="订单类型" width="85">
+									</el-table-column>
+									<el-table-column label="预订产品" width="300">
+										<template scope="scope">
+											<div v-text="scope.row.book_product"></div>
+											<div style="color: darkgray;font-weight: 700;" v-text="scope.row.prod_des"></div>
+										</template>
+									</el-table-column>
+									<el-table-column prop="total_money" :formatter="monty_format" label="支付金额" width="85">
+									</el-table-column>
+									<el-table-column prop="start_time" label="出发时间" width="150">
+									</el-table-column>
+									<el-table-column prop="contacts_name" label="联系人" width="175">
+										<template scope="scope">
+											<div v-text="scope.row.contacts_name"></div>
+											<div v-text="scope.row.contacts_phone"></div>
+											<div v-text="scope.row.contacts_ID"></div>
+										</template>
+									</el-table-column>
+									<el-table-column prop="order_status_des" label="状态">
+									</el-table-column>
+									<el-table-column prop="pay_type_des" label="支付方式">
+									</el-table-column>
+									<el-table-column prop="order_come" label="订单来源">
+										<template scope="scope">
+											<div v-text="scope.row.order_come.come1"></div>
+											<div v-text="scope.row.order_come.come2"></div>
+										</template>
+									</el-table-column>
+									<el-table-column prop="" label="操作">-
+										<template scope="scope">
+											-
+											<!--<el-button size="small" type="info" @click="clickDetail(scope.row)">佣金详情</el-button>-->
+										</template>
+									</el-table-column>
+								</el-table>
+							</div>
+							<el-pagination style="text-align: right;margin-right: 30px;" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="current_page" :page-size="10" layout="prev, pager, next, jumper" :total="total_count">
+							</el-pagination>
+						</div>
 					</div>
-					<div class="dis_middle">
-						<el-button type="danger" class="el-icon-document" size="small" @click="btn_export()">导出</el-button>
-					</div>
-					<div class="dis_table">
-						<el-table v-loading.body="loading" :data="order_listinfo" stripe style="width: 100%;text-align: left;font-size:12px">
-							<el-table-column prop="order_id" label="订单编号" width="85">
-							</el-table-column>
-							<el-table-column prop="create_order_time" label="预订时间" width="150">
-							</el-table-column>
-							<el-table-column prop="order_type_des" label="订单类型" width="85">
-							</el-table-column>
-							<el-table-column label="预订产品" width="300">
-								<template scope="scope">
-									<div v-text="scope.row.book_product"></div>
-									<div style="color: darkgray;font-weight: 700;" v-text="scope.row.prod_des"></div>
-								</template>
-							</el-table-column>
-							<el-table-column prop="total_money" :formatter="monty_format" label="支付金额" width="85">
-							</el-table-column>
-							<el-table-column prop="start_time" label="出发时间" width="150">
-							</el-table-column>
-							<el-table-column prop="contacts_name" label="联系人" width="175">
-								<template scope="scope">
-									<div v-text="scope.row.contacts_name"></div>
-									<div v-text="scope.row.contacts_phone"></div>
-									<div v-text="scope.row.contacts_ID"></div>
-								</template>
-							</el-table-column>
-							<el-table-column prop="order_status_des" label="状态">
-							</el-table-column>
-							<el-table-column prop="pay_type_des" label="支付方式">
-							</el-table-column>
-							<el-table-column prop="order_come" label="订单来源">
-								<template scope="scope">
-									<div v-text="scope.row.order_come.come1"></div>
-									<div v-text="scope.row.order_come.come2"></div>
-								</template>
-							</el-table-column>
-							<el-table-column prop="" label="操作">-
-								<template scope="scope">
-									-
-									<!--<el-button size="small" type="info" @click="clickDetail(scope.row)">佣金详情</el-button>-->
-								</template>
-							</el-table-column>
-						</el-table>
-					</div>
-					<el-pagination style="text-align: right;margin-right: 30px;" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="current_page" :page-size="10" layout="prev, pager, next, jumper" :total="total_count">
-					</el-pagination>
-					<!--<div class="pageDiv"></div>-->
-				</div>
-			</div>
+				</el-tab-pane>
+			</el-tabs>
+
 		</div>
 	</div>
 </template>
@@ -100,7 +99,6 @@
 <script>
 	import Util from '../libs/Util'
 	import AdminConfig from '../common/admin-config'
-	import $ from 'jquery'
 	export default {
 		name: "order_listDIV",
 		data() {
@@ -329,12 +327,19 @@
 			},
 			//导出
 			btn_export() {
-				this.$router.push({
-					name: "commission_details",
-					query: {
-						fx_uid: 22
-					}
-				})
+//				this.$router.push({
+//					name: "commission_details",
+//					query: {
+//						fx_uid: 22
+//					}
+//				})
+				let order_id = this.order_id;
+				let order_type_id = this.select_order_type;
+				let start_time = this.start_time;
+				let end_time = this.end_time;
+				let order_status_id = this.select_order_status;
+				let cstr = `order/order/export-order-list&start_time=${start_time}&end_time=${end_time}&order_id=${order_id}&order_type_id=${order_type_id}&order_status_id=${order_status_id}`;
+				location.href=AdminConfig.base_api+cstr;
 			},
 			//取消订单
 			cancelDidClick(dict) {

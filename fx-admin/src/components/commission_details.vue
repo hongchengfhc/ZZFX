@@ -1,85 +1,83 @@
 <template>
 	<div v-loading.fullscreen.lock="loading" element-loading-text="拼命加载中" id="commissionDIV">
 		<div class="iframe_box">
-			<ul id="myTabs" class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active" href="#commission_detail" data-toggle="tab">
-					<a>佣金明细</a>
-				</li>
-			</ul>
-			<div class="tab-content table_box">
-				<div role="tabpanel" class="tab-pane active" id="commission_detail">
-					<div class="dis_search" style="text-align: left;">
-						<div class="form-inline search_list_1">
-							<span class="search_name">订单编号：</span>
-							<div class="form-group">
-								<el-input v-model="order_id" size="small" placeholder="订单编号"></el-input>
-								<!--<input v-model="order_id" type="text" class="form-control" placeholder="订单编号">-->
+			<el-tabs type="border-card">
+				<el-tab-pane label="佣金明细">
+					<div role="tabpanel" class="tab-pane active" id="commission_detail">
+						<div class="dis_search" style="text-align: left;">
+							<div class="form-inline search_list_1">
+								<span class="search_name">订单编号：</span>
+								<div class="form-group">
+									<el-input v-model="order_id" size="small" placeholder="订单编号"></el-input>
+									<!--<input v-model="order_id" type="text" class="form-control" placeholder="订单编号">-->
+								</div>
+								<span class="search_name">订单类型：</span>
+								<div class="form-group">
+									<el-select v-model="select_order_type" size="small" filterable placeholder="请选择">
+										<el-option v-for="item in order_type_list" :key="item.order_type_id" :value="item.order_type_id" :label="item.order_type_des">
+										</el-option>
+									</el-select>
+								</div>
+								<span class="search_name">下单开始时间：</span>
+								<el-date-picker v-model="date1Val" @change="change1" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+								<span class="search_name">下单结束时间：</span>
+								<el-date-picker v-model="date2Val" @change="change2" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
 							</div>
-							<span class="search_name">订单类型：</span>
-							<div class="form-group">
-								<el-select v-model="select_order_type" size="small" filterable placeholder="请选择">
-									<el-option v-for="item in order_type_list" :key="item.order_type_id" :value="item.order_type_id" :label="item.order_type_des">
-									</el-option>
-								</el-select>
-							</div>
-							<span class="search_name">下单开始时间：</span>
-							<el-date-picker v-model="date1Val" @change="change1" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-							<span class="search_name">下单结束时间：</span>
-							<el-date-picker v-model="date2Val" @change="change2" size="small" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-						</div>
-						<div class="form-inline">
-							<span class="search_name">订单状态：</span>
-							<div class="form-group">
-								<!--<select id="order-status-select" v-model="select_status" @change="order_status_change" class="form-control" style="width: 151px;">
+							<div class="form-inline">
+								<span class="search_name">订单状态：</span>
+								<div class="form-group">
+									<!--<select id="order-status-select" v-model="select_status" @change="order_status_change" class="form-control" style="width: 151px;">
 									<option v-for="item in order_status_list" v-bind:value="item.order_status_id" v-text="item.order_status_id"></option>
 								</select>-->
-								<el-select v-model="select_status" size="small" filterable placeholder="请选择">
-									<el-option v-for="item in order_status_list" :key="item.order_status_id" :value="item.order_status_id" :label="item.order_status_des">
-									</el-option>
-								</el-select>
+									<el-select v-model="select_status" size="small" filterable placeholder="请选择">
+										<el-option v-for="item in order_status_list" :key="item.order_status_id" :value="item.order_status_id" :label="item.order_status_des">
+										</el-option>
+									</el-select>
+								</div>
+								<span class="search_name">结算开始时间：</span>
+								<el-date-picker v-model="date3Val" size="small" @change="change3" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+								<span class="search_name">结算结束时间：</span>
+								<el-date-picker v-model="date4Val" size="small" @change="change4" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
+
+								<el-button @click="btn_search" size="small" icon="search" type="primary" style="float: right;">搜索</el-button>
+								<el-button @click="btn_reset" size="small" type="warning" style="float: right;margin-right: 10px;">重置</el-button>
 							</div>
-							<span class="search_name">结算开始时间：</span>
-							<el-date-picker v-model="date3Val" size="small" @change="change3" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-							<span class="search_name">结算结束时间：</span>
-							<el-date-picker v-model="date4Val" size="small" @change="change4" type="date" placeholder="选择日期" :picker-options="pickerOptions0"></el-date-picker>
-
-							<el-button @click="btn_search" size="small" icon="search" type="primary" style="float: right;">搜索</el-button>
-							<el-button @click="btn_reset" size="small" type="warning" style="float: right;margin-right: 10px;">重置</el-button>
 						</div>
+						<!--dis_search end-->
+						<div class="dis_middle">
+							<el-button type="danger" @click="btn_export" class="el-icon-document" size="small">导出</el-button>
+						</div>
+						<div class="dis_table">
+							<el-table :data="prod_list" style="width: 100%;text-align: left;">
+								<el-table-column prop="order_id" label="订单编号">
+								</el-table-column>
+								<el-table-column prop="order_type_des" label="订单类型">
+								</el-table-column>
+								<el-table-column prop="create_order_date" label="下单时间" width="180">
+								</el-table-column>
+								<el-table-column prop="order_price" label="订单金额">
+								</el-table-column>
+								<el-table-column prop="order_status_des" label="订单状态">
+								</el-table-column>
+								<el-table-column prop="settlement_order_date" label="结算时间">
+								</el-table-column>
+								<el-table-column prop="all_commission_money" label="合计佣金">
+								</el-table-column>
+								<el-table-column prop="" label="操作">
+									<template scope="scope">
+										<el-button size="small" type="info" @click="clickDetail(scope.row)">佣金详情</el-button>
+									</template>
+								</el-table-column>
+							</el-table>
+						</div>
+						<!--dis_table end-->
+						<el-pagination style="text-align: right;margin-right: 30px;" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="current_page" :page-size="10" layout="prev, pager, next, jumper" :total="total_count">
+						</el-pagination>
 					</div>
-					<!--dis_search end-->
-					<div class="dis_middle">
-						<el-button type="danger" @click="btn_export" class="el-icon-document" size="small">导出</el-button>
-					</div>
-					<div class="dis_table">
-						<el-table :data="prod_list" style="width: 100%;text-align: left;">
-							<el-table-column prop="order_id" label="订单编号">
-							</el-table-column>
-							<el-table-column prop="order_type_des" label="订单类型">
-							</el-table-column>
-							<el-table-column prop="create_order_date" label="下单时间" width="180">
-							</el-table-column>
-							<el-table-column prop="order_price" label="订单金额">
-							</el-table-column>
-							<el-table-column prop="order_status_des" label="订单状态">
-							</el-table-column>
-							<el-table-column prop="settlement_order_date" label="结算时间">
-							</el-table-column>
-							<el-table-column prop="all_commission_money" label="合计佣金">
-							</el-table-column>
-							<el-table-column prop="" label="操作">
-								<template scope="scope">
-									<el-button size="small" type="info" @click="clickDetail(scope.row)">佣金详情</el-button>
-								</template>
-							</el-table-column>
-						</el-table>
-					</div>
-					<!--dis_table end-->
-					<el-pagination style="text-align: right;margin-right: 30px;" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="current_page" :page-size="10" layout="prev, pager, next, jumper" :total="total_count">
-					</el-pagination>
-				</div>
 
-			</div>
+				</el-tab-pane>
+			</el-tabs>
+
 		</div>
 		<el-dialog title="佣金详情" style="text-align: left;" v-model="dialog_show_flag">
 			<el-table :data="detail_list" style="text-align: left;">
@@ -107,7 +105,7 @@
 				},
 				current_page: 1,
 				page_size: 10,
-				total_count:0,
+				total_count: 0,
 				order_type_list: [],
 				order_status_list: [],
 				select_order_type: "",
@@ -121,8 +119,8 @@
 				detail_list: [],
 				no_info: "无查询结果",
 				dialog_show_flag: false,
-				loading:true,   //加载 loading
-				fx_uid:0
+				loading: true, //加载 loading
+				fx_uid: 0
 			}
 		},
 		//过滤器
@@ -132,11 +130,14 @@
 		//钩子函数
 		mounted: function() {
 			this.$nextTick(function() {
-				Util.delay(this.httpLoadInfo,AdminConfig.delayTime);
+				Util.delay(this.httpLoadInfo, AdminConfig.delayTime);
 			})
 		},
-		watch:{
-			"$route":"btn_search"
+		beforeRouteEnter(to, from, next) {
+			console.log(to, from, next, this);
+			next((vm) => {
+				vm.btn_search();
+			})
 		},
 		methods: {
 			handleSizeChange(val) {
@@ -162,25 +163,27 @@
 			httpLoadInfo() {
 				let _this = this;
 				let data = {
-					fx_uid:this.fx_uid
+					fx_uid: this.fx_uid
 				}
 				this.$http.post(
-					AdminConfig.base_api + "order/order/get-initialize", data, { emulateJSON: true }
+					AdminConfig.base_api + "order/order/get-initialize", data, {
+						emulateJSON: true
+					}
 				).then(function(res) {
 					let res_data = res['body'];
-					this.loading=false;
-					if(res_data['flag']==false){
+					this.loading = false;
+					if(res_data['flag'] == false) {
 						this.$message.warning(res_data['msg']);
-					}else{
+					} else {
 						let data = res_data['data'];
 						Util.ZZLog(res_data);
 						this.order_type_list = data['order_type_list'];
 						this.order_status_list = data['order_status_list'];
 						this.btn_search();
 					}
-					
+
 				}, function() {
-					this.loading=false;
+					this.loading = false;
 					this.$message.error(AdminConfig.infoApiError);
 				});
 				this.httpFirstInfo();
@@ -211,24 +214,26 @@
 
 				Util.ZZLog(AdminConfig.base_api + "order/order/get-commission-list", JSON.stringify(data));
 				this.$http.post(
-					AdminConfig.base_api + "order/order/get-commission-list", data, { emulateJSON: true }
+					AdminConfig.base_api + "order/order/get-commission-list", data, {
+						emulateJSON: true
+					}
 				).then(function(res) {
 					let res_data = res['body'];
 					Util.ZZLog(res_data);
-					this.loading=false;
+					this.loading = false;
 					if(res_data['flag'] == false) {
 						this.$message.warning(res_data['msg']);
 					} else {
 						let data = res_data['data'];
 						let page = data['page'];
-						this.total_count=parseInt(page['total_count']);
+						this.total_count = parseInt(page['total_count']);
 						let prod_list = data['prod_list'];
 						this.prod_list = prod_list;
 						//分页控件
 					}
 
 				}, function() {
-					this.loading=false;
+					this.loading = false;
 					this.$message.error(AdminConfig.infoApiError);
 				});
 			},
@@ -256,11 +261,13 @@
 
 				Util.ZZLog(AdminConfig.base_api + "order/order/get-commission-list", JSON.stringify(data));
 				this.$http.post(
-					AdminConfig.base_api + "order/order/get-commission-list", data, { emulateJSON: true }
+					AdminConfig.base_api + "order/order/get-commission-list", data, {
+						emulateJSON: true
+					}
 				).then(function(res) {
 					let res_data = res['body'];
 					Util.ZZLog(res_data);
-					this.loading=false;
+					this.loading = false;
 					if(res_data['flag'] == false) {
 						this.$message.warning(res_data['msg']);
 					} else {
@@ -270,7 +277,7 @@
 						this.prod_list = prod_list;
 					}
 				}, function() {
-					this.loading=false;
+					this.loading = false;
 					this.$message.error(AdminConfig.infoApiError);
 				});
 			},
@@ -287,18 +294,22 @@
 				this.select_status = "";
 				this.btn_search();
 			},
-			btn_export(){
+			btn_export() {
 				console.log('export');
 				this.$router.push({
-					name:"order_list"
+					name: "order_list"
 				})
 			},
 			clickDetail(item) {
 				let order_id = item['order_id'];
-				let data = { order_id };
+				let data = {
+					order_id
+				};
 				Util.ZZLog(AdminConfig.base_api + 'order/order/get-commission-detail', JSON.stringify(data));
 				this.$http.post(
-					AdminConfig.base_api + 'order/order/get-commission-detail', data, { emulateJSON: true }
+					AdminConfig.base_api + 'order/order/get-commission-detail', data, {
+						emulateJSON: true
+					}
 				).then(function(res) {
 					let res_data = res.body;
 					Util.ZZLog(res_data);
@@ -310,7 +321,7 @@
 						this.dialog_show_flag = true;
 					}
 				}, function() {
-					
+
 					this.$message.error(AdminConfig.infoApiError);
 				});
 
@@ -332,6 +343,7 @@ require("css/common/module.css")*/
 	.el-date-editor.el-input {
 		width: 149px;
 	}
+	
 	.el-select {
 		width: 149px;
 	}

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!--<img src="./assets/logo.png">-->
     <keep-alive>
     		<!--<transition name="fade" mode="out-in">-->
     			<router-view></router-view>
