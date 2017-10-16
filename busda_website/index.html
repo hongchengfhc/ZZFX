@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--<meta name="renderer" content="webkit|ie-comp|ie-stand">-->
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+  <meta name="referrer" content="unsafe-url" />
+  <meta name="referrer" content="always" />
+  <script type="text/javascript">
+    var sys = myBrowser();
+
+
+    if (sys.IEVersion==8 || sys.IEVersion==7 || sys.IEVersion==6) {
+        var info = "温馨提示，本站不支持ie9以下版本，请升级你的ie浏览器或使用其它浏览器。";
+        alert(info);
+        location.href="https://www.baidu.com/s?wd=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8&rsv_spt=1&rsv_iqid=0xcfdb9e6e00011689&issp=1&f=3&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=%25E8%25B0%25B7%25E6%25AD%258C%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8&rsv_t=5976qZGAG74UNkeAxKvTvw76yEgRdL%2FA%2FmIIcU6xmVLfYvlvZG%2FU2tVb7ZYYmv8qchEV&inputT=4&rsv_sug3=7&rsv_sug1=7&rsv_sug7=100&rsv_sug2=0&rsv_pq=8ab8966a000202a7&rsv_sug4=747&rsv_sug=1";
+
+    }
+
+    function myBrowser() {
+      var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+      var ua = {};
+      var isOpera = userAgent.indexOf("Opera") > -1;
+      //判断是否Opera浏览器
+      ua.isOpera = isOpera;
+      //判断是否Firefox浏览器
+      var isFirefox = userAgent.indexOf("Firefox") > -1;
+      ua.isFirefox = isFirefox;
+      //判断是否Chrome浏览器
+      var isChrome = userAgent.indexOf("Chrome") > -1;
+      ua.isChrome = isChrome;
+      //判断是否Safari浏览器
+      var isSafari = userAgent.indexOf("Safari") > -1;
+      ua.isSafari = isSafari;
+      var isIE = false;
+      var isIE_1_10 = false;
+      var IEVersion = -1;
+      var isEdge = false;
+      var isIE11 = false;
+      if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+        isIE = true;
+        isIE_1_10 = true;
+        //判断是IE几
+        var browser = navigator.appName;
+        var b_version = navigator.appVersion;
+        var version = b_version.split(';');
+        var IENAME = "Microsoft Internet Explorer";
+
+        var trim_Version = version[1].replace(/[ ]/g, "");
+
+        if (IENAME == browser && trim_Version == "MSIE6.0") IEVersion = 6;
+        else if (IENAME == browser && trim_Version == "MSIE7.0") IEVersion = 7;
+        else if (IENAME == browser && trim_Version == "MSIE8.0") IEVersion = 8;
+        else if (IENAME == browser && trim_Version == "MSIE9.0") IEVersion = 9;
+        else IEVersion = 10;
+        // return "IE";
+      }; //判断是否IE浏览器
+      if (!!window.ActiveXObject || 'ActiveXObject' in window) {
+        var _isEdge = userAgent.indexOf('Edge') > -1 && !isIE;
+        var _isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf('rv:11.0') > -1;
+        isEdge = _isEdge;
+        isIE11 = _isIE11;
+        isIE = true;
+        if(isIE11)IEVersion=11;
+      }
+      ua.isIE = isIE;
+      ua.isIE_1_10 = isIE_1_10;
+      ua.IEVersion = IEVersion;
+      ua.isEdge = isEdge;
+      ua.isIE11 = isIE11;
+      return ua;
+    }
+  </script>
+  <title>巴士达，旅游用车服务预订首选！</title>
+  <!-- <script src="https://og6593g2z.qnssl.com/fundebug.0.1.6.min.js"
+    		apikey="c701df853265851df5b032a2aecbb18f6bd5e653f99607e9a284d942610e6923"></script> -->
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

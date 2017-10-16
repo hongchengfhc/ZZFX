@@ -1,0 +1,49 @@
+/*全局更改   重写iview的指定class的样式  */
+
+.ivu-input:focus {
+  box-shadow: 0 0 0 0px rgba(255, 151, 16, 0.2)!important;
+}
+
+
+/* select框点中选中时的外发光 */
+
+.ivu-select-visible .ivu-select-selection {
+  box-shadow: 0 0 0 0px rgba(255, 151, 26, 0.2) !important;
+}
+
+
+/* 设置iview中模态框边框不是圆角 */
+
+.ivu-modal-content {
+  border-radius: 0px !important;
+}
+
+.ivu-btn{
+	box-shadow: 0 0 0 0px rgba(255, 151, 26, 0.2) !important;
+}
+
+
+/*ivu-btn-text*/
+
+.ivu-btn-text:hover {
+  color: #ff9710!important;
+}
+
+
+/*自定义loading*/
+
+.demo-span-icon-load {
+  animation: ani-demo-span 1s linear infinite;
+}
+
+@keyframes ani-demo-span {
+  form {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
